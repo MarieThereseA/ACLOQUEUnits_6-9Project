@@ -5,6 +5,7 @@ public class Player {
   int wins;
   int losses;
   int games;
+  int currentValue;
   ArrayList<Card> hand;
   ArrayList<Chip> black;
   ArrayList<Chip> green;
@@ -21,16 +22,17 @@ public class Player {
     wins = 0;
     losses = 0;
     games = 0;
+    currentValue = 0;
     hand = new ArrayList<>();
     black = new ArrayList<Chip>();
     green = new ArrayList<Chip>();
     blue = new ArrayList<Chip>();
 
     black.add(new Chip(100));
-    for (int i = 0; i <= 8; i++){
+    for (int i = 0; i < 8; i++){
       green.add(new Chip(25));
     }
-    for (int i = 0; i <= 20; i++){
+    for (int i = 0; i < 20; i++){
       blue.add(new Chip(10));
     }
   }
@@ -55,10 +57,13 @@ public class Player {
     losses++;
   }
 
+  public String getName(){
+    return name;
+  }
   public String getChips(){
-    String chips =WHITE + "Black" + RESET + ": " + black.size();
-    chips+= GREEN + "\nGreen" + RESET + ": " + green.size();
-    chips+= BLUE + "\nBlue" + RESET + ": " + blue.size();
+    String chips =WHITE + "Black ($100)" + RESET + ": " + black.size();
+    chips+= GREEN + "\nGreen ($25)" + RESET + ": " + green.size();
+    chips+= BLUE + "\nBlue ($10)" + RESET + ": " + blue.size();
     return chips;
   }
 
@@ -72,8 +77,19 @@ public class Player {
     return info;
   }
 
-  public void hit(){
+  public void hit(Card card){
+    hand.add(card);
+    currentValue += card.getValue();
+    System.out.println("Hit!");
+    System.out.println(card.getName());
+    System.out.println(name + ": " + currentValue);
+    if (currentValue < 21){
 
+    }else if (currentValue == 21){
+
+    }else {
+
+    }
   }
 
 
