@@ -9,12 +9,12 @@ public class Deck extends Card{
     }
 
     //Getter & Setter Methods
-    public Card[] getDeck(){
-        return deck;
-    }
+//    public Card[] getDeck(){
+//        return deck;
+//    }
 
-    public Card getCard(){
-        return deck[0];
+    public Card getCard(int i){
+        return deck[i];
     }
     //Other Methods
 
@@ -22,7 +22,7 @@ public class Deck extends Card{
         int count = 0;
         while (count < 27){
             ArrayList<Integer> chosen1 = new ArrayList<>(); // 0 - 26
-            ArrayList<Integer> chosen2 = new ArrayList<>(); // 26 - 54
+            ArrayList<Integer> chosen2 = new ArrayList<>(); // 26 - 53
             int idx1 = 0;
             int idx2 = 0;
             boolean valid = false;
@@ -36,15 +36,59 @@ public class Deck extends Card{
                 }
             }
 
+            valid = false;
             while(!valid){
-                idx2 = (int) (Math.random() * (28) + 27);
+                idx2 = (int) ((Math.random() * (27)) + 27);
                 valid = true;
-                for(int i = 0; i < chosen1.size(); i++){
-                    if (chosen1.get(i) == idx2){
+                for(int i = 0; i < chosen2.size(); i++){
+                    if (chosen2.get(i) == idx2){
                         valid = false;
                     }
                 }
             }
+
+            chosen1.add(idx1);
+            chosen2.add(idx2);
+
+//            System.out.println("one:"  + idx1);
+//            System.out.println("two: " + idx2);
+            Card temp = deck[idx2];
+            deck[idx2] = deck[idx1];
+            deck[idx1] = temp;
+
+            count++;
+        }
+
+
+        count = 0;
+        int idx1 = 0;
+        int idx2 = 0;
+        ArrayList<Integer> chosen = new ArrayList<>(); // 0 - 53
+
+        while (count < 27){
+            boolean valid = false;
+            while(!valid){
+                idx1 = (int) (Math.random() * (54));
+                valid = true;
+                for(int i = 0; i < chosen.size(); i++){
+                    if (chosen.get(i) == idx1){
+                        valid = false;
+                    }
+                }
+            }
+            chosen.add(idx1);
+
+            valid = false;
+            while(!valid){
+                idx2 = (int) (Math.random() * (54));
+                valid = true;
+                for(int i = 0; i < chosen.size(); i++){
+                    if (chosen.get(i) == idx2){
+                        valid = false;
+                    }
+                }
+            }
+            chosen.add(idx2);
 
             Card temp = deck[idx2];
             deck[idx2] = deck[idx1];
@@ -55,11 +99,19 @@ public class Deck extends Card{
 
     }
 
+    public String toString(){
+        String str = "";
+        for (int i = 0; i < deck.length; i++){
+            str += "\n" + deck[i].getName();
+        }
+        return str;
+    }
+
     //Private Helper Methods
 
     private void createDeck(){
         deck[0] = new Card();
-        System.out.println(0 + deck[0].getName());
+//        System.out.println(0 + deck[0].getName());
         int idx = 1;
         int suitNum = 1;
         String suit = "Heart";
@@ -117,13 +169,5 @@ public class Deck extends Card{
                 idx++;
             }
         }
-    }
-
-    public String toString(){
-        String str = "";
-        for (int i = 0; i < deck.length; i++){
-            str += "\n" + deck[i].getName();
-        }
-        return str;
     }
 }

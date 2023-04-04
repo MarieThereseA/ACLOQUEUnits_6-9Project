@@ -1,8 +1,7 @@
-import java.net.IDN;
-
-public class SaveFile{
+import java.io.Serializable;
+public class SaveFile implements Serializable{
     private Player player;
-    private int ID = 1000;
+    public static int ID = 1000;
     private int IDNum;
 
     public SaveFile(Player player){

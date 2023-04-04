@@ -5,7 +5,11 @@ public class Card{
 
   public Card(String suit, String face){ //Constructor for face cards
     this.face = face;
-    this.value = 10;
+    if (face.equals("Ace")){
+      this.value = 0;
+    }else {
+      this.value = 10;
+    }
     name = face + " of " + suit + "s";
   }
 
@@ -30,8 +34,12 @@ public class Card{
     return value;
   }
 
-  public boolean isCardJoker(){
+  public boolean isJoker(){
     return name.equals("Joker");
+  }
+
+  public boolean  isAce(){
+    return name.contains("Ace");
   }
 
 }
