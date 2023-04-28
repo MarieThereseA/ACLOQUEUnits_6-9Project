@@ -1,11 +1,11 @@
 public class Chip {
 
 	private int value ;
-    private String color;
+	private String color;
 
 
 	public Chip(int value){
-		this.value = value;	
+		this.value = value;
 		if (value == 100){
 
 		}else if (value == 25){
@@ -18,9 +18,9 @@ public class Chip {
 	public String getColor(){
 		return color;
 	}
-     
+
 	public int getValue(){
 		return value;
 	}
-	
+
 }

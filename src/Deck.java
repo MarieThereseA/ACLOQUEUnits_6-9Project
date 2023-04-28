@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Deck extends Card{
+public class Deck {
     private Card[] deck; //Represents a standard 54 card deck as an array
 
     public Deck(){

@@ -37,10 +37,6 @@ public class Player extends House{
     return bank;
   }
 
-  public void updateBank(int change){
-    int val = 0;
-  }
-
   public void addGame(){
     games++;
   }
@@ -130,7 +126,7 @@ public class Player extends House{
   }
 
   public String getChips(){
-    String chips =WHITE + "Black ($100)" + RESET + ": " + black.size();
+    String chips = WHITE + "Black ($100)" + RESET + ": " + black.size();
     chips+= GREEN + "\nGreen ($25)" + RESET + ": " + green.size();
     chips+= BLUE + "\nBlue ($10)" + RESET + ": " + blue.size();
     return chips;
@@ -155,6 +151,5 @@ public class Player extends House{
   }
 
 
-  }
-
+}
 
