@@ -2,14 +2,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class InfoPanel extends JPanel implements ActionListener {
+public class MenuPanel extends JPanel implements ActionListener {
 
     private BlackJack controller;
     private SpringLayout panelLayout;
-    private JTextPane statsPane;
-    private JButton backButton;
+    private JLabel welcomeLabel;
+    private JButton playButton;
+    private JButton infoButton;
+    private JButton exitButton;
 
-    public InfoPanel(BlackJack controllerRef){
+
+    public MenuPanel (BlackJack controllerRef){
         super();
         controller = controllerRef;
 
@@ -35,5 +38,7 @@ public class InfoPanel extends JPanel implements ActionListener {
 
     }
 }
+
+
 
 
