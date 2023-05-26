@@ -1,6 +1,7 @@
 import java.util.*;
 import java.io.*;
 public class BlackJack{
+  private GameFrame gameWindow;
   private Player p1;
   private House house;
   private Deck[] decks;
@@ -28,6 +29,7 @@ public class BlackJack{
     cardIdx[1] = 0;
     scan = new Scanner(System.in);
     house = new House("Dealer");
+    gameWindow = new GameFrame(this);
   }
 
   public void play(){

@@ -22,6 +22,14 @@ public class GamePanel extends JPanel implements ActionListener {
         setupListeners();
     }
 
+    public void actionPerformed(ActionEvent ae){
+
+    }
+
+    public void start(){
+
+    }
+
     private void setupPanel(){
 
     }
@@ -31,10 +39,6 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     private void setupListeners(){
-
-    }
-
-    public void actionPerformed(ActionEvent ae){
 
     }
 }

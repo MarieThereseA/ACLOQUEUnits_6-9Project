@@ -43,22 +43,22 @@ public class GameFrame extends JFrame{
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);
-            gamePanel.start(controller.start());
+//            gamePanel.start(controller.start());
         }else if (screen.equals("INFO")){
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);
-            infoPanel.start(controller.info());
+//            infoPanel.start(controller.info());
         }else if (screen.equals("MENU")){
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);
-            menuPanel.start(controller.menu());
+//            menuPanel.start(controller.menu());
         }else if (screen.equals("BET")){
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);
-            betPanel.start(controller.game());
+//            betPanel.start(controller.game());
         }else if (screen.equals("START")){
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;

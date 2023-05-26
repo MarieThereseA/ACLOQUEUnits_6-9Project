@@ -31,6 +31,18 @@ public class BetPanel extends JPanel implements ActionListener, ChangeListener {
     }
 
 
+    public void actionPerformed(ActionEvent ae){
+
+    }
+
+    public void stateChanged(ChangeEvent ce){
+
+    }
+
+    public void start(){
+
+    }
+
     private void setupPanel(){
 
     }
@@ -40,14 +52,6 @@ public class BetPanel extends JPanel implements ActionListener, ChangeListener {
     }
 
     private void setupListeners(){
-
-    }
-
-    public void actionPerformed(ActionEvent ae){
-
-    }
-
-    public void stateChanged(ChangeEvent ce){
 
     }
 }
