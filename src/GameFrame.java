@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+
 public class GameFrame extends JFrame{
     private JPanel panelCards;
     private BlackJack controller;
@@ -22,9 +25,18 @@ public class GameFrame extends JFrame{
     }
 
     private void setupFrame(){
-        setSize(1000,1000);
+        setSize(1500,1000);
+        setResizable(false);
         setTitle("BlackJack");
-        add(panelCards);
+        JLabel backgroundImg = new JLabel(new ImageIcon("src/gradient.png"));
+        backgroundImg.setLayout(new BorderLayout());
+        setContentPane(backgroundImg);
+        try{
+            setIconImage((ImageIO.read(new File("src/blackjackPic.png"))));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        backgroundImg.add(panelCards);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelCards.add(startPanel, "START");
