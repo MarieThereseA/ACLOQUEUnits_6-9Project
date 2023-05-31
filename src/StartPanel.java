@@ -13,7 +13,7 @@ import java.io.File;
 public class StartPanel extends JPanel implements ActionListener {
     private BlackJack controller;
     private SpringLayout panelLayout;
-    private JTextPane welcomePane;
+    private JTextPane welcomeLabel;
     private JLabel instructionsLabel;
     private JLabel userNameLabel;
     private JLabel IDLabel;
@@ -21,6 +21,7 @@ public class StartPanel extends JPanel implements ActionListener {
     private JTextField IDField;
     private JButton createAccountButton;
     private JButton loginButton;
+    private JTextPane textPane1;
 
 
     public StartPanel(BlackJack controllerRef){
@@ -35,14 +36,14 @@ public class StartPanel extends JPanel implements ActionListener {
             e.printStackTrace();
         }
         // BlackJack image cloudinary.com && tutorialspoint.com
-        welcomePane = new JTextPane();
+        welcomeLabel = new JTextPane();
         SimpleAttributeSet attributeSet = new SimpleAttributeSet();
         StyleConstants.setItalic(attributeSet, true);
-        welcomePane.setCharacterAttributes(attributeSet, true);
-        welcomePane.setText("");
+        welcomeLabel.setCharacterAttributes(attributeSet, true);
+        welcomeLabel.setText("");
         Font font = new Font("Verdana", Font.BOLD, 10);
-        welcomePane.setFont(font);
-        StyledDocument doc = (StyledDocument) welcomePane.getDocument();
+        welcomeLabel.setFont(font);
+        StyledDocument doc = (StyledDocument) welcomeLabel.getDocument();
         Style style = doc.addStyle("StyleName", null);
         StyleConstants.setIcon(style, new ImageIcon(image));
         try {
@@ -50,7 +51,7 @@ public class StartPanel extends JPanel implements ActionListener {
         }catch (Exception e){
             e.printStackTrace();
         }
-        welcomePane.setEditable(false);
+        welcomeLabel.setEditable(false);
 
         instructionsLabel = new JLabel("Login or Create an account");
         userNameLabel = new JLabel("User Name:");
@@ -75,7 +76,7 @@ public class StartPanel extends JPanel implements ActionListener {
 
     private void setupPanel(){
         setLayout(panelLayout);
-        add(welcomePane);
+        add(welcomeLabel);
         add(instructionsLabel);
         add(userNameLabel);
         add(userNameField);
@@ -83,13 +84,14 @@ public class StartPanel extends JPanel implements ActionListener {
         add(IDField);
         add(loginButton);
         add(createAccountButton);
+
     }
 
     private void setupLayout(){
-        panelLayout.putConstraint(SpringLayout.NORTH, welcomePane,5, SpringLayout.NORTH, this);
-        panelLayout.putConstraint(SpringLayout.WEST, welcomePane,5, SpringLayout.WEST, this);
+        panelLayout.putConstraint(SpringLayout.NORTH, welcomeLabel,5, SpringLayout.NORTH, this);
+        panelLayout.putConstraint(SpringLayout.WEST, welcomeLabel,5, SpringLayout.WEST, this);
 
-        panelLayout.putConstraint(SpringLayout.NORTH, instructionsLabel, 5, SpringLayout.SOUTH, welcomePane);
+        panelLayout.putConstraint(SpringLayout.NORTH, instructionsLabel, 5, SpringLayout.SOUTH, welcomeLabel);
         panelLayout.putConstraint(SpringLayout.WEST, instructionsLabel, 5, SpringLayout.WEST, this);
 
         panelLayout.putConstraint(SpringLayout.NORTH, userNameLabel, 10, SpringLayout.SOUTH, instructionsLabel);
@@ -115,6 +117,14 @@ public class StartPanel extends JPanel implements ActionListener {
     private void setupListeners(){
         loginButton.addActionListener(this);
         createAccountButton.addActionListener(this);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        ImageIcon imageIcon = new ImageIcon("gradient.png");
+        Image bgImage = imageIcon.getImage();
+        g.drawImage(bgImage, 0, 0, this);
     }
 
     private boolean verifyID(int ID){

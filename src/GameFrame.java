@@ -28,15 +28,18 @@ public class GameFrame extends JFrame{
         setSize(1500,1000);
         setResizable(false);
         setTitle("BlackJack");
-        JLabel backgroundImg = new JLabel(new ImageIcon("src/gradient.png"));
-        backgroundImg.setLayout(new BorderLayout());
-        setContentPane(backgroundImg);
+        JLabel background = new JLabel();
+        background.setIcon(new ImageIcon("gradient.png"));
+//        background.setOpaque(false);
+        background.setLayout(new BorderLayout());
+        background.setBackground(Color.LIGHT_GRAY);
+        setContentPane(background);
         try{
-            setIconImage((ImageIO.read(new File("src/blackjackPic.png"))));
+            setIconImage((ImageIO.read(new File("src/aceofhearts.png"))));
         }catch (Exception e){
             e.printStackTrace();
         }
-        backgroundImg.add(panelCards);
+        add(panelCards);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panelCards.add(startPanel, "START");
