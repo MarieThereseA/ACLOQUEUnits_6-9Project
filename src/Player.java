@@ -5,6 +5,7 @@ public class Player extends House{
   int wins;
   int losses;
   int games;
+  int IDNum;
   private ArrayList<Chip> black;
   private ArrayList<Chip> green;
   private ArrayList<Chip> blue;
@@ -14,8 +15,9 @@ public class Player extends House{
   private static final String RESET = "\u001B[0m";
 
 
-  public Player(String name){
+  public Player(String name,int IDNum){
     super(name);
+    this.IDNum = IDNum;
     bank = 500;
     wins = 0;
     losses = 0;

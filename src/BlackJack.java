@@ -37,6 +37,16 @@ public class BlackJack{
     menu();
   }
 
+  public boolean login(String userName, int IDNum){
+    SaveFile sf = new SaveFile();
+    return sf.confirmIDNum(userName, IDNum);
+  }
+
+  public void createAccount(String userName){
+    SaveFile sf = new SaveFile(userName);
+    p1 = new Player(userName, sf.getIDNum());
+  }
+
   private void start(){
     System.out.println("Welcome to: ");
     System.out.println(WHITE + "88          88                       88        88                       88         \n" +
