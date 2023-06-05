@@ -35,6 +35,46 @@ public class Player extends House{
     }
   }
 
+  public Player(String name){
+    super(name);
+  }
+
+  public void getInfo(String data){
+    data = data.substring(data.indexOf("b:$") + 3);
+    bank = Integer.parseInt(data.substring(0, data.indexOf("|")));
+
+    data = data.substring(data.indexOf("blackC") + 6);
+    int blackChips = 0;
+    blackChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
+    for (int i = 0; i < blackChips; i++){
+      black.add(new Chip(100));
+    }
+
+    data = data.substring(data.indexOf("blueC") + 5);
+    int blueChips = 0;
+    blueChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
+    for (int i = 0; i < blueChips; i++){
+      blue.add(new Chip(10));
+    }
+
+    data = data.substring(data.indexOf("greenC") + 6);
+    int greenChips = 0;
+    greenChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
+    for (int i = 0; i < greenChips; i++){
+      green.add(new Chip(25));
+    }
+
+    data = data.substring(data.indexOf("gP:") + 3);
+    games = Integer.parseInt(data.substring(0, data.indexOf("|")));
+
+    data = data.substring(data.indexOf("gW:") + 3);
+    wins = Integer.parseInt(data.substring(0, data.indexOf("|")));
+
+    data = data.substring(data.indexOf("gL:") + 3);
+    losses = Integer.parseInt(data.substring(0, data.indexOf("|")));
+
+  }
+
   public int getBank(){
     return bank;
   }

@@ -33,21 +33,32 @@ public class BlackJack{
   }
 
   public void play(){
-    start();
+    start1();
     menu();
+  }
+
+  public void start(){
+    gameWindow.replaceScreen("MENU");
   }
 
   public boolean login(String userName, int IDNum){
     SaveFile sf = new SaveFile();
-    return sf.confirmIDNum(userName, IDNum);
+    if (sf.confirmIDNum(userName, IDNum)){
+      p1 = new Player(userName, IDNum);
+      p1.getInfo(sf.getData(userName, IDNum));
+      return true;
+    }else {
+      return false;
+    }
   }
 
   public void createAccount(String userName){
     SaveFile sf = new SaveFile(userName);
     p1 = new Player(userName, sf.getIDNum());
+
   }
 
-  private void start(){
+  private void start1(){
     System.out.println("Welcome to: ");
     System.out.println(WHITE + "88          88                       88        88                       88         \n" +
             "88          88                       88        \"\"                       88         \n" +

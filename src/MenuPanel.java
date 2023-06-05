@@ -17,6 +17,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         controller = controllerRef;
 
 
+
         setupPanel();
         setupLayout();
         setupListeners();
