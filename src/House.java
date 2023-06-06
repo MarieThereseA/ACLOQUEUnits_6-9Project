@@ -12,6 +12,11 @@ public class House {
         hand = new ArrayList<>();
     }
 
+    //Overloaded Constructor
+    public House(){
+
+    }
+
     public String getName(){
         return name;
     }

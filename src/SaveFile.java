@@ -3,30 +3,45 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SaveFile implements Serializable{
-    private static int ID = 1000;
     private int IDNum;
     private File file;
+    private Scanner scanner;
+    private FileWriter fw;
+    private PrintWriter out;
+
+    private FileReader fr;
+    private BufferedReader br;
 
     public SaveFile(String userName){
-        IDNum = ID;
-        FileWriter fw = null;
+        fw = null;
         file = new File("src/Data.txt");
         try{
             fw = new FileWriter(file,true);
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            IDNum = Integer.parseInt(br.readLine());
         } catch (Exception e){
             e.printStackTrace();
         }
-        PrintWriter out = new PrintWriter(fw);
+        out = new PrintWriter(fw);
         out.println("uN:" + userName + "|" + "ID:" + IDNum + "|" + "b:" + "$500" + "|" + "blackC:"
                 + "1" + "|" + "blueC:" + "20" + "|" + "greenC" + "8" + "|" + "gP:" + "0" + "|" + "gW:" + "0"
                 + "|" + "gL:" + "0" + ";");
         out.close();
-        ID++;
-        file = new File("src/Data.txt");
     }
 
     public SaveFile(){
         file = new File("src/Data.txt");
+        fw = null;
+        try{
+            fw = new FileWriter(file,true);
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+            IDNum = Integer.parseInt(br.readLine());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        out = new PrintWriter(fw);
     }
 
     public int getIDNum(){
@@ -34,45 +49,61 @@ public class SaveFile implements Serializable{
     }
 
     public String getData(String userName, int num){
-        Scanner scanner = null;
+        String line = "";
         try{
-            scanner = new Scanner(file);
-        }catch (Exception e){
+            br.reset();
+        }catch(Exception e){
             e.printStackTrace();
         }
 
-        String line = "";
-        while(!(line.contains(userName) && line.equals(num + ""))){
-            line = scanner.nextLine();
+        while(line != null && !(line.contains(userName) && line.contains(num + ""))){
+            try {
+                line = br.readLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        scanner.close();
         return line;
     }
 
-    public boolean confirmIDNum(String userName, int num){
-        Scanner scanner = null;
-        try{
-            scanner = new Scanner(file);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+    public boolean confirmIDNum(String userName, int num) {
         String line = "";
-        while (!line.contains(userName)){
-            line = scanner.nextLine();
+        while (!(line.contains(userName) && line.contains(num + "")) && line != null) {
+            try {
+                line = br.readLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        scanner.close();
 
-        if (line.contains(userName) && line.contains(num + "")){
-            return true;
-        }else {
+        if (line == null){
             return false;
+        }else {
+            if (line.contains(userName) && line.contains(num + "")) {
+                return true;
+            } else {
+                return false;
+            }
         }
-
     }
+
+//        while (!line.contains(userName)){
+//            line = scanner.nextLine();
+//        }
+//
+//        if (line.contains(userName) && line.contains(num + "")){
+//            return true;
+//        }else {
+//            return false;
+//        }
+
 
     public void updateData(int num,String dataType, int update){
 
     }
+
+//    public String print(){
+//        return scanner.toString();
+//    }
 
 }

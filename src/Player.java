@@ -14,7 +14,7 @@ public class Player extends House{
   private static final String WHITE = "\u001b[37;1m";
   private static final String RESET = "\u001B[0m";
 
-
+  //Overloaded Constructor
   public Player(String name,int IDNum){
     super(name);
     this.IDNum = IDNum;
@@ -35,11 +35,18 @@ public class Player extends House{
     }
   }
 
+  //Overloaded Constructor
   public Player(String name){
     super(name);
   }
 
+  //Overloaded Constructor
+  public Player(){
+    super();
+  }
+
   public void getInfo(String data){
+    IDNum = Integer.parseInt(data.substring(data.indexOf("ID:") + 3, data.indexOf("|")));
     data = data.substring(data.indexOf("b:$") + 3);
     bank = Integer.parseInt(data.substring(0, data.indexOf("|")));
 
@@ -78,6 +85,11 @@ public class Player extends House{
   public int getBank(){
     return bank;
   }
+
+  public int getID(){
+    return IDNum;
+  }
+
 
   public void addGame(){
     games++;

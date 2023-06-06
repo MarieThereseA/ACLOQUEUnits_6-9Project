@@ -1,18 +1,11 @@
 public class Main {
-    private static final String RED = "\u001B[41m";
-    private static final String RESET = "\u001B[0m";
-    private static final String BLUE = "\u001B[44m";
-    private static final String GREEN = "\u001B[42m";
-    private static final String WHITE = "\u001B[44m";
     public static void main(String[] args) {
+//         OldBlackJack game = new OldBlackJack();
          BlackJack game = new BlackJack();
-         game.play();
+//         SaveFile sf = new SaveFile();
+//         System.out.println(sf.print());
+//         game.play();
       // System.out.println("❤   ♣   ♠   ♦");
-            Deck deck = new Deck();
-//            deck.shuffle();
-//            deck.shuffle();
-//            deck.shuffle();
-//            System.out.println(deck.toString());
       
     }
 }
