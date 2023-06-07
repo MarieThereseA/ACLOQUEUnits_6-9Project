@@ -1,2 +1,2 @@
 1001
-uN:Marie|ID:1000|b:$500|blackC:1|blueC:20|greenC8|gP:0|gW:0|gL:0;
+uN:Marie|ID:1000|b:$5000|blackC:1|blueC:21|greenC:8|gP:0|gW:0|gL:0;

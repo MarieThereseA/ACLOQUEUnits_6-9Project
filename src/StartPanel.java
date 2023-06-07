@@ -15,6 +15,7 @@ public class StartPanel extends JPanel implements ActionListener {
     private SpringLayout panelLayout;
     private JTextPane welcomeLabel;
     private JLabel instructionsLabel;
+    private JLabel invalidLabel;
     private JLabel userNameLabel;
     private JLabel IDLabel;
     private JTextField userNameField;
@@ -36,6 +37,7 @@ public class StartPanel extends JPanel implements ActionListener {
         }catch (Exception e){
             e.printStackTrace();
         }
+
         // BlackJack image cloudinary.com && tutorialspoint.com
         welcomeLabel = new JTextPane();
         SimpleAttributeSet attributeSet = new SimpleAttributeSet();
@@ -52,27 +54,17 @@ public class StartPanel extends JPanel implements ActionListener {
         }catch (Exception e){
             e.printStackTrace();
         }
-        welcomeLabel.setEditable(false);
+
 
         instructionsLabel = new JLabel("Login or Create an account");
-        instructionsLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        invalidLabel = new JLabel("Invalid User Name or ID; Please try again");
         userNameLabel = new JLabel("User Name:");
-        userNameLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
         IDLabel = new JLabel("ID Number: ");
-        IDLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
         userNameField = new JTextField("");
-        userNameField.setColumns(10);
-        userNameField.setFont(new Font("SansSerif", Font.PLAIN, 24));
         IDField = new JTextField("");
-        IDField.setColumns(10);
-        IDField.setFont(new Font("SansSerif", Font.PLAIN, 24));
         createAccountButton = new JButton("Create Account");
-        createAccountButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
         createAccountButton2 = new JButton("Create New Account");
-        createAccountButton2.setVisible(false);
-        createAccountButton2.setFont(new Font("SansSerif", Font.PLAIN, 16));
         loginButton = new JButton("Login");
-        loginButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
         setupPanel();
         setupLayout();
@@ -83,14 +75,16 @@ public class StartPanel extends JPanel implements ActionListener {
         Object source = ae.getSource();
         JButton button = (JButton)source;
         if (button.getText().equals("Login")){
+            System.out.println("login pressed!");
             String userName = userNameField.getText();
             int ID = Integer.parseInt(IDField.getText());
             if (controller.login(userName, ID)){
                 controller.start();
             }else{
-                userNameField.setText("Invalid User Name or ID; Please try again");
+                setNewLayout();
+                invalidLabel.setVisible(true);
                 IDField.setText("");
-                userNameField.setBackground(Color.RED);
+
             }
 
         }else if (button.getText().equals("Create Account")){
@@ -113,6 +107,7 @@ public class StartPanel extends JPanel implements ActionListener {
         setLayout(panelLayout);
         add(welcomeLabel);
         add(instructionsLabel);
+        add(invalidLabel);
         add(userNameLabel);
         add(userNameField);
         add(IDLabel);
@@ -120,6 +115,23 @@ public class StartPanel extends JPanel implements ActionListener {
         add(loginButton);
         add(createAccountButton);
         add(createAccountButton2);
+
+        welcomeLabel.setEditable(false);
+        instructionsLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        invalidLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
+        invalidLabel.setBackground(Color.RED);
+        invalidLabel.setOpaque(true);
+        invalidLabel.setVisible(false);
+        userNameLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+        IDLabel.setFont(new Font("SansSerif", Font.BOLD, 16));
+        userNameField.setColumns(10);
+        userNameField.setFont(new Font("SansSerif", Font.PLAIN, 24));
+        IDField.setColumns(10);
+        IDField.setFont(new Font("SansSerif", Font.PLAIN, 24));
+        createAccountButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        createAccountButton2.setFont(new Font("SansSerif", Font.PLAIN, 16));
+        createAccountButton2.setVisible(false);
+        loginButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
     }
 
     private void setupLayout(){
@@ -129,7 +141,43 @@ public class StartPanel extends JPanel implements ActionListener {
         panelLayout.putConstraint(SpringLayout.NORTH, instructionsLabel, 5, SpringLayout.SOUTH, welcomeLabel);
         panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instructionsLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
+        panelLayout.putConstraint(SpringLayout.NORTH, invalidLabel, 5, SpringLayout.SOUTH, instructionsLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, invalidLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
         panelLayout.putConstraint(SpringLayout.NORTH, userNameLabel, 10, SpringLayout.SOUTH, instructionsLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, userNameLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, userNameField, 5, SpringLayout.SOUTH, userNameLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, userNameField, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, IDLabel, 10, SpringLayout.SOUTH, userNameField);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, IDLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, IDField, 5, SpringLayout.SOUTH, IDLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, IDField, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+
+        panelLayout.putConstraint(SpringLayout.NORTH, loginButton, 10, SpringLayout.SOUTH, IDField);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, loginButton, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, createAccountButton, 5, SpringLayout.SOUTH, loginButton);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, createAccountButton, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, createAccountButton2, 10, SpringLayout.SOUTH, userNameField);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, createAccountButton2, 0, SpringLayout.HORIZONTAL_CENTER, this);
+    }
+
+    private void setNewLayout(){
+        panelLayout.putConstraint(SpringLayout.NORTH, welcomeLabel,5, SpringLayout.NORTH, this);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, welcomeLabel,0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, instructionsLabel, 5, SpringLayout.SOUTH, welcomeLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, instructionsLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, invalidLabel, 5, SpringLayout.SOUTH, instructionsLabel);
+        panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, invalidLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
+
+        panelLayout.putConstraint(SpringLayout.NORTH, userNameLabel, 10, SpringLayout.SOUTH, invalidLabel);
         panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, userNameLabel, 0, SpringLayout.HORIZONTAL_CENTER, this);
 
         panelLayout.putConstraint(SpringLayout.NORTH, userNameField, 5, SpringLayout.SOUTH, userNameLabel);

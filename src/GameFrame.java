@@ -26,7 +26,6 @@ public class GameFrame extends JFrame{
 
     private void setupFrame(){
         setSize(1500,1000);
-        setResizable(false);
         setTitle("BlackJack");
 //        JLabel background = new JLabel();
 //        background.setIcon(new ImageIcon("gradient.png"));
@@ -50,6 +49,7 @@ public class GameFrame extends JFrame{
 
         replaceScreen("START");
 
+        setResizable(false);
         setVisible(true);
     }
 
@@ -60,11 +60,13 @@ public class GameFrame extends JFrame{
             cardLayout.show(panelCards, screen);
 //            gamePanel.start(controller.start());
         }else if (screen.equals("INFO")){
+            infoPanel.setUpInfo();
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);
 //            infoPanel.start(controller.info());
         }else if (screen.equals("MENU")){
+            menuPanel.setUp();
             LayoutManager layout = panelCards.getLayout();
             CardLayout cardLayout = (CardLayout) layout;
             cardLayout.show(panelCards, screen);

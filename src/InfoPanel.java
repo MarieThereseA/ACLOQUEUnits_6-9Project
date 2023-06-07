@@ -12,6 +12,10 @@ public class InfoPanel extends JPanel implements ActionListener {
     public InfoPanel(BlackJack controllerRef){
         super();
         controller = controllerRef;
+        panelLayout = new SpringLayout();
+
+        statsPane = new JTextPane();
+        backButton = new JButton("Back");
 
 
         setupPanel();
@@ -19,16 +23,18 @@ public class InfoPanel extends JPanel implements ActionListener {
         setupListeners();
     }
 
+    public void setUpInfo(){
+
+    }
+
     public void actionPerformed(ActionEvent ae){
 
     }
 
-    public void start(){
-
-    }
-
     private void setupPanel(){
-
+        setLayout(panelLayout);
+        add(statsPane);
+        add(backButton);
     }
 
     private void setupLayout(){

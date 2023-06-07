@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class SaveFile implements Serializable{
     private int IDNum;
+    private String data;
     private File file;
     private Scanner scanner;
     private FileWriter fw;
@@ -15,6 +16,7 @@ public class SaveFile implements Serializable{
     public SaveFile(String userName){
         fw = null;
         file = new File("src/Data.txt");
+        data = "";
         try{
             fw = new FileWriter(file,true);
             fr = new FileReader(file);
@@ -25,9 +27,8 @@ public class SaveFile implements Serializable{
         }
         out = new PrintWriter(fw);
         out.println("uN:" + userName + "|" + "ID:" + IDNum + "|" + "b:" + "$500" + "|" + "blackC:"
-                + "1" + "|" + "blueC:" + "20" + "|" + "greenC" + "8" + "|" + "gP:" + "0" + "|" + "gW:" + "0"
+                + "1" + "|" + "blueC:" + "20" + "|" + "greenC:" + "8" + "|" + "gP:" + "0" + "|" + "gW:" + "0"
                 + "|" + "gL:" + "0" + ";");
-        out.close();
     }
 
     public SaveFile(){
@@ -48,27 +49,19 @@ public class SaveFile implements Serializable{
         return IDNum;
     }
 
-    public String getData(String userName, int num){
-        String line = "";
-        try{
-            br.reset();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        while(line != null && !(line.contains(userName) && line.contains(num + ""))){
-            try {
-                line = br.readLine();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return line;
+    public String getData(){
+        return data;
     }
 
     public boolean confirmIDNum(String userName, int num) {
         String line = "";
-        while (!(line.contains(userName) && line.contains(num + "")) && line != null) {
+        try{
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        while (line != null && !(line.contains(userName) && line.contains(num + "")) ) {
             try {
                 line = br.readLine();
             } catch (Exception e) {
@@ -80,6 +73,7 @@ public class SaveFile implements Serializable{
             return false;
         }else {
             if (line.contains(userName) && line.contains(num + "")) {
+                data = line;
                 return true;
             } else {
                 return false;

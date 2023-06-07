@@ -18,22 +18,22 @@ public class MenuPanel extends JPanel implements ActionListener {
         controller = controllerRef;
         panelLayout = new SpringLayout();
 
-        if (controller.isReturningPlayer()){
-            welcomeLabel = new JLabel("Welcome Back " + controller.getName());
-        }else {
-            welcomeLabel = new JLabel("Welcome " + controller.getName());
-        }
-        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        welcomeLabel = new JLabel();
         playButton = new JButton("Play");
-        playButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
         infoButton = new JButton("User Info");
-        infoButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
         exitButton = new JButton("Exit");
-        exitButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
 
         setupPanel();
         setupLayout();
         setupListeners();
+    }
+
+    public void setUp(){
+        if (controller.isReturningPlayer()){
+            welcomeLabel.setText("Welcome Back " + controller.getName());
+        }else {
+            welcomeLabel.setText("Welcome " + controller.getName());
+        }
     }
 
     public void actionPerformed(ActionEvent ae){
@@ -46,6 +46,11 @@ public class MenuPanel extends JPanel implements ActionListener {
         add(playButton);
         add(infoButton);
         add(exitButton);
+
+        welcomeLabel.setFont(new Font("SansSerif", Font.BOLD, 24));
+        playButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
+        infoButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
+        exitButton.setFont(new Font("SansSerif", Font.PLAIN, 36));
     }
 
     private void setupLayout(){
@@ -53,7 +58,7 @@ public class MenuPanel extends JPanel implements ActionListener {
         panelLayout.putConstraint(SpringLayout.NORTH, welcomeLabel,5, SpringLayout.NORTH, this);
 
 
-        panelLayout.putConstraint(SpringLayout.NORTH, playButton,1000, SpringLayout.NORTH, this);
+        panelLayout.putConstraint(SpringLayout.NORTH, playButton,100, SpringLayout.NORTH, this);
         panelLayout.putConstraint(SpringLayout.HORIZONTAL_CENTER, playButton,0, SpringLayout.HORIZONTAL_CENTER, this);
 
         panelLayout.putConstraint(SpringLayout.NORTH, infoButton,5, SpringLayout.SOUTH, playButton);

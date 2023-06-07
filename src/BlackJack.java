@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 public class BlackJack{
   private GameFrame gameWindow;
+  String test;
   private Player p1;
   private House house;
   private Deck[] decks;
@@ -9,7 +10,8 @@ public class BlackJack{
   private boolean isReturningPlayer;
 
   public BlackJack(){
-    p1 = new Player();
+    p1 = new Player("noName");
+    test = "test";
     decks = new Deck[4];
     decks[0] = new Deck();
     decks[1] = new Deck();
@@ -30,8 +32,11 @@ public class BlackJack{
     SaveFile sf = new SaveFile();
     if (sf.confirmIDNum(userName, IDNum)){
       p1 = new Player(userName, IDNum);
-      p1.getInfo(sf.getData(userName, IDNum));
+      p1.getInfo(sf.getData());
+      System.out.println(p1);
       isReturningPlayer = true;
+      test = "test passed!";
+      System.out.println(test);
       return true;
     }else {
       return false;
@@ -46,6 +51,8 @@ public class BlackJack{
   }
 
   public String getName(){
+    test = "new test";
+    System.out.println(test);
     return p1.getName() + "#" + p1.getID();
   }
 

@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class House {
     private String name;
-
     private int currentValue;
     private ArrayList<Card> hand;
 
@@ -14,7 +13,6 @@ public class House {
 
     //Overloaded Constructor
     public House(){
-
     }
 
     public String getName(){

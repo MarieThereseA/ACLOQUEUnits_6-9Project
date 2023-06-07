@@ -1,6 +1,5 @@
 import java.util.*;
 public class Player extends House{
-
   int bank;
   int wins;
   int losses;
@@ -15,7 +14,7 @@ public class Player extends House{
   private static final String RESET = "\u001B[0m";
 
   //Overloaded Constructor
-  public Player(String name,int IDNum){
+  public Player(String name, int IDNum){
     super(name);
     this.IDNum = IDNum;
     bank = 500;
@@ -26,13 +25,13 @@ public class Player extends House{
     green = new ArrayList<Chip>();
     blue = new ArrayList<Chip>();
 
-    black.add(new Chip(100));
-    for (int i = 0; i < 8; i++){
-      green.add(new Chip(25));
-    }
-    for (int i = 0; i < 20; i++){
-      blue.add(new Chip(10));
-    }
+//    black.add(new Chip(100));
+//    for (int i = 0; i < 8; i++){
+//      green.add(new Chip(25));
+//    }
+//    for (int i = 0; i < 20; i++){
+//      blue.add(new Chip(10));
+//    }
   }
 
   //Overloaded Constructor
@@ -41,30 +40,31 @@ public class Player extends House{
   }
 
   //Overloaded Constructor
-  public Player(){
-    super();
-  }
+//  public Player(){
+//    super();
+//  }
 
   public void getInfo(String data){
+    data = data.substring(data.indexOf("|") + 1);
     IDNum = Integer.parseInt(data.substring(data.indexOf("ID:") + 3, data.indexOf("|")));
     data = data.substring(data.indexOf("b:$") + 3);
     bank = Integer.parseInt(data.substring(0, data.indexOf("|")));
 
-    data = data.substring(data.indexOf("blackC") + 6);
+    data = data.substring(data.indexOf("blackC:") + 7);
     int blackChips = 0;
     blackChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
     for (int i = 0; i < blackChips; i++){
       black.add(new Chip(100));
     }
 
-    data = data.substring(data.indexOf("blueC") + 5);
+    data = data.substring(data.indexOf("blueC:") + 6);
     int blueChips = 0;
     blueChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
     for (int i = 0; i < blueChips; i++){
       blue.add(new Chip(10));
     }
 
-    data = data.substring(data.indexOf("greenC") + 6);
+    data = data.substring(data.indexOf("greenC:") + 7);
     int greenChips = 0;
     greenChips = Integer.parseInt(data.substring(0, data.indexOf("|")));
     for (int i = 0; i < greenChips; i++){
@@ -78,7 +78,7 @@ public class Player extends House{
     wins = Integer.parseInt(data.substring(0, data.indexOf("|")));
 
     data = data.substring(data.indexOf("gL:") + 3);
-    losses = Integer.parseInt(data.substring(0, data.indexOf("|")));
+    losses = Integer.parseInt(data.substring(0, data.indexOf(";")));
 
   }
 
